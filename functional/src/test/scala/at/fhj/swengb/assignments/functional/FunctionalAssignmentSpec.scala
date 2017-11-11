@@ -16,9 +16,10 @@ class FunctionalAssignmentSpec extends WordSpecLike {
       assert(abs(1) == 1)
       assert(abs(-1) == 1)
       assert(abs(0) == 0)
-      val rnd = Random.nextInt()
-      val rndWithSign = rnd * (if (Random.nextBoolean()) 1 else -1)
-      assert(abs(rndWithSign) == rnd)
+      for (i <- 1 to 1000) {
+        val rnd = Random.nextInt()
+        assert(abs(rnd) == Math.abs(rnd))
+      }
     }
     "2: flip" in {
       assert(flip(("a", 1)) == (1, "a"))
