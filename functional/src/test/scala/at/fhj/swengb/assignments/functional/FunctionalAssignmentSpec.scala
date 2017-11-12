@@ -64,13 +64,18 @@ class FunctionalAssignmentSpec extends WordSpecLike {
             , (9, 'i')
             , (10, 'j')))
     }
-    "9: myList: sum" in {
-      val myList: MyList[Int] = MyList(hundreds: _*)
+    "9.0: myList empty" in assert(MyList[Int]() == MyNil)
+    "9.1: myList one element" in assert(MyList[Int](1) == Cons(1, MyNil))
+    "9.2: myList two elements" in assert(MyList[Int](1, 2) == Cons(1, Cons(2, MyNil)))
+    "9.3: myList.sum(0)" in assert(MyList.sum(MyList[Int]()) == 0)
+    "9.4: myList.sum(1)" in assert(MyList.sum(MyList[Int](1)) == 1)
+    "9.5: myList.sum(1)" in assert(MyList.sum(MyList[Int](1, 2)) == 3)
+    "9.x: myList: sum" in {
+      val myList: MyList[Int] = MyList[Int](hundreds: _*)
       assert(MyList.sum(myList) == hundreds.sum)
     }
     "10: myList: product" in {
-      val myList: MyList[Int] = MyList(hundreds: _*)
-      assert(MyList.product(myList) == hundreds.product)
+      assert(MyList.product(MyList[Int](hundreds: _*)) == hundreds.product)
 
     }
   }
