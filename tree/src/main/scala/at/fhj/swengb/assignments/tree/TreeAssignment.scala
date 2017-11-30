@@ -39,7 +39,20 @@ object Graph {
     * @param convert a converter function
     * @return
     */
-  def traverse[A, B](tree: Tree[A])(convert: A => B): Seq[B] =  ???
+  def traverse[A, B](tree: Tree[A])(convert: A => B): Seq[B] = {
+
+    //Helper that adds all elements to list
+    def addElemToList(elem: Tree[A], list: Seq[A]): Seq[A] = {
+      elem match {
+        case Node(x) => list.seq :+ x
+        case Branch(left, right) =>
+          addElemToList(left, addElemToList(right, list))
+      }
+    }
+
+    //Add all nodes to list and map operation
+    addElemToList(tree, List()).reverse.map(convert)
+  }
 
 
   /**
@@ -61,11 +74,21 @@ object Graph {
               treeDepth: Int,
               factor: Double = 0.75,
               angle: Double = 45.0,
-              colorMap: Map[Int, Color] = Graph.colorMap): Tree[L2D] = ???
+              colorMap: Map[Int, Color] = Graph.colorMap): Tree[L2D] = {
+    require(treeDepth <= colorMap.size - 1)
 
+    if (treeDepth == 0) Node(L2D(start, angle, length, colorMap(0)))
+
+    else {
+      def makeGraph(start: L2D, acc: Int): Tree[L2D] = {
+        if (treeDepth == acc) Branch(Node(start), Branch(Node(start.left(factor, angle, colorMap(acc - 1))), Node(start.right(factor, angle, colorMap(acc - 1)))))
+        else Branch(Node(start), Branch(makeGraph(start.left(factor, angle, colorMap(acc - 1)), acc + 1), makeGraph(start.right(factor, angle, colorMap(acc - 1)), acc + 1)))
+      }
+
+      makeGraph(L2D(start, initialAngle, length, colorMap(0)), 1)
+    }
+  }
 }
-
-
 
 
 object L2D {
