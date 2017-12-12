@@ -1,10 +1,57 @@
+/*
 // see https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html
 // see http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
+*/
 
 #calculator {
-	-fx-background-color:#00ff00;
+	-fx-background-color:white;
 }
 
 #calculator .grey {
-	-fx-background-color:#ff00ff;
+
+
+	-fx-background-color: gainsboro;
+	-fx-border-color: grey;
+	-fx-font-size: 22px;
+
+
+
+/*
+	top: 0px;
+	border-radius: 4px;
+	position: relative;
+	border: none;
+	background: none;
+	font-family: 'Roboto', sans-serif;
+	width: 200px;
+	height: 50px;
+	cursor: pointer;
+	transition: 0.1s all ease;
+	font-size: 16px;
+	font-weight: 300;
+	color: #777;
+	border-bottom: 1px solid #ccc;
+	box-shadow: 0px 0px 0px 0px #B8B8B8;
+	*/
+}
+#calculator .orange {
+
+	-fx-background-color: #FFA500;
+	-fx-border-color: grey;
+	-fx-font-size: 22px;
+
+
+}
+#calculator .darkgrey {
+
+	-fx-background-color: darkgray;
+	-fx-border-color: grey;
+	-fx-font-size: 22px;
+
+}
+
+#calculator .textfield {
+	-fx-background-color: lightgrey;
+	-fx-border-color: grey;
+	-fx-font-size: 36px;
 }
